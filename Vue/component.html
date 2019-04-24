@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="component-demo">
+       <button-counter></button-counter> 
+       <button-counter></button-counter> 
+    </div>
+
+    <div id="blog">
+        <div  :style="{ fontSize: postFontSize + 'em' }">
+            <blog-post
+                v-for="post in posts"
+                v-bind:key="post.id"
+                v-bind:post="post"
+                v-on:enlarge-text="postFontSize += 0.1"
+            ></blog-post>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+        Vue.component('blog-post',{
+            props:['post'],
+            template:`
+                <div class="blog-post">
+                    <h3>{{ post.title }}</h3>
+                    <button v-on:click="$emit('enlarge-text')">
+                        Enlarge text
+                    </button>
+                </div>
+            `
+        })
+
+        new Vue({
+            el:"#blog",
+            data:{
+                posts:[
+                    {id:1,title:"you are my ice"},
+                    {id:2,title:"my mouth is you"},
+                ],
+                postFontSize:2,
+                
+            }
+        })
+
+
+        Vue.component('button-counter', {
+           data: function(){
+               return {
+                   count: 0
+               }
+           },
+           template: '<button v-on:click="count++">You clicked me {{ count }}</button>'
+       })
+
+       new Vue({
+           el:'#component-demo'
+       })
+    </script>
+</body>
+</html>
