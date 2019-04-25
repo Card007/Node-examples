@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input placeholder='hello'> 
+    <div id="example-1">
+        <button v-on:click='counter++'>Add 1</button>
+        <p>点击次数：{{ counter }}</p>
+    </div>
+
+    <div id="example-2">
+        <span>Multiline message is:</span>
+        <p style="white-space: pre-line;">{{ message }}</p>
+        </br>
+        <textarea v-model.trim="message" placeholder="edit me"></textarea>
+    </div>
+
+    <div id="example-3">
+        <input type="checkbox" id='Jack' value='Jack' v-model='checkedNames'>
+        <label for='Jack'>Jack</label>
+        <input type="checkbox" id='John' value='John' v-model='checkedNames'>
+        <label for='John'>John</label>
+        <input type="checkbox" id='Mike' value='Mike' v-model='checkedNames'>
+        <label for='Mike'>Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>
+
+    <div id="example-5">
+        <select v-model="selected">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+       var count = new Vue({
+           el: '#example-1',
+           data: {
+               counter: 0
+           }
+       })
+
+       var example2 = new Vue({
+           el: '#example-2',
+           data:{
+               message:'',
+           }
+       })
+
+       var example3 = new Vue({
+           el: '#example-3',
+           data: {
+               checkedNames:[],
+           }
+       })
+    </script>
+</body>
+</html>
