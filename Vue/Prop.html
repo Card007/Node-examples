@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="blog">
+        <blog-post v-bind:title="post.title"></blog-post>
+        <number-prop v-bind:propB="post.likes"></number-prop>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+       Vue.component('blog-post',{
+            props:['title'],
+            template:`
+                <h1>{{ title }}</h1>
+            `
+        })
+
+       new Vue({
+            el:'#blog',
+            data:{
+                post:{ 
+                    title:'You are my eyes!' ,
+                    auther:'临来',
+                    likes: 45,
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
