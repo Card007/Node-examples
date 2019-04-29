@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BMI计算器</title>
+</head>
+<body>
+    <div id="app">
+        身高(M):<input v-model="height">
+        体重(KG):<input v-model="width">
+        <div>
+            <h2>您的BMI为 {{ bmi }}</h2>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+       var vm = new Vue({
+           el:'#app',
+           data:{
+               height:0,
+               width:0,
+               bmi:'',
+           },
+           watch:{
+               height:function(val){
+                   this.height = val
+                   this.bmi = this.width/(this.height*this.height)
+               },
+               width:function(val){
+                   this.width = val
+                   this.bmi = this.width/(this.height*this.height)
+               }
+           }
+       })
+    </script>
+</body>
+</html>
