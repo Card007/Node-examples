@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="message" placeholder="编辑我...">
+        <h1>{{ message }}</h1>
+        <br>
+        <textarea v-model="message2" placeholder="多行文本输入..."></textarea>
+        <h1>{{ message2 }}</h1>
+    </div>
+
+    <div id="app1">
+        <p>单个复选框</p>
+        <input v-model="checked" type="checkbox">
+        <label for="checkbox">{{ checked }}</label>
+
+        <br>
+        <p>多个复选框</p>
+        <input type="checkbox" v-model="checkeds" value="Runoob">
+        <label for="runoob"
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                message:'正在输入...',
+                message2:'也是正在输入...',
+            }
+        })
+       
+    </script>
+</body>
+</html>
