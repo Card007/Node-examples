@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+            },
+            methods:{
+            },
+        });
+
+        var myMixin = {
+            created:function(){
+                this.startmixin()
+            },
+            methods:{
+                startmixin:function(){
+                    document.write("欢迎使用混入实例！");
+                }
+            }
+        };
+
+        var Component = new Vue({
+            mixins: [myMixin]
+        })
+
+        var component = new Component();
+
+        this.$http.post('/try/ajax/demo_test_post.php',{name:"菜鸟教程",url:"http://www.runoob.com"},{emulateJSON:true}).then(function(res){
+                    document.write(res.body);    
+                },function(res){
+                    console.log(res.status);
+                });
+       
+    </script>
+</body>
+</html>
+
