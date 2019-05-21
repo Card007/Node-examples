@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id = 'demo'>{{ fullName }}</div>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+        // var vm = new Vue({
+        //     el: '#demo',
+        //     data: {
+        //         firstNmae: 'Foo',
+        //         lastName: 'Bar',
+        //         fullNamae: 'Foo Bar'
+        //     },
+        //     watch: {
+        //         firstNmae: function(val){
+        //             this.fullNamae = val + ' ' + this.lastName
+        //         },
+        //         lastName: function(val){
+        //             this.fullNamae = this.firstNmae + ' ' + val
+        //         }
+        //     }
+        // })
+        
+        var vm = new Vue({
+            el: '#demo',
+            data: {
+                firstName: 'Foo',
+                lastName: 'Bar',
+            },
+            computed: {
+                fullName: {
+                    get: function(){
+                        return this.firstName + ' ' + this.lastName
+                    },
+
+                    set: function(newValue){
+                        var names = newValue.split(' ')
+                        this.firstName = names[0]
+                        this.lastName = names[names.length-1]
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
