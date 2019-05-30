@@ -1,30 +1,42 @@
-// const logNumber = function(){
-//     timeoutN()
-//     console.log(2)
-//     return console.log("程序开始返回")
+// const getWeb = function(){
+//     requestSomething()
+//     setData()
+//     return console.log("程序结束")
 // }
 
-// const timeoutN = function(){
-//     setTimeout(() => console.log(1),2000)
+// const requestSomething = function(){
+//     setTimeout(() => console.log('网页数据爬取完毕！'),2000)
 // }
 
-// logNumber()
+// const setData = function(){
+//     console.log('开始处理数据！')
+// }
+
+// getWeb()
 
 
-
-const logNumber = async function(){
-    await timeoutN()
-    console.log(2)
-    return console.log("程序开始返回")
+const getWeb = async function(){
+    await requestSomething().catch(e => console.log(e))
+    setData()
+    return console.log("程序结束")
 }
 
-const timeoutN = function(){
+const requestSomething = function(){
     return new Promise((resolve, reject) => {
+        let err = '爬取失败！'
+        if(err){
+            reject(err)
+        } else (
         setTimeout(() => {
-            console.log(1)
+            console.log('网页数据爬取完毕！')
             resolve()
         },2000)
+        )
     })
 }
 
-logNumber()
+const setData = function(){
+    console.log('开始处理数据！')
+}
+
+getWeb()
