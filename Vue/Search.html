@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            font:15px/1.3 'Open Sans', sans-serif;
+            text-align: center;
+        }
+
+        form{
+            margin:50px auto;
+            width:400px;
+            height: 800px;
+            padding:20px;
+        }
+
+        input{
+            border-radius: 20px;
+            outline: none;
+            border:1px solid #ebebee;
+            padding:0 20px;
+            font-size:25px;
+            width:100%;
+        }
+
+        form ul{
+            list-style: none;
+            color:#6e7a7f;
+            margin-top:30px;
+            text-align: left;
+            padding-left:20px;
+            font-size:20px;
+        }
+
+        form li{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="main" v-cloak>
+        <input v-model="value" placeholder="输入搜索内容">
+        <ul>
+            <li v-for="article in filteredArticles" v-bind:class="{active : article.active}">
+                {{ article.name }}</li>
+        </ul>
+    </form>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+        var demo = new Vue({
+            el:'#main',
+            data:{
+                value:'',
+                answer:'',
+                articles:[
+                    {
+                        name:'What You Need To Know About CSS Variables',
+                        active:true,
+                    },{
+                        name:'Freebie: 4 Great Looking Pricing Tables',
+                        active:true,
+                    },{
+                        name:'20 Interesting JavaScript and CSS Libraries for February 2016',
+                        active:true,
+                    },{
+                        name:'Quick Tip: The Easiest Way To Make Responsive Headers',
+                        active:true,
+                    },{
+                        name:'Learn SQL In 20 Minutes',
+                        active:true,
+                    },{
+                        name:'Creating Your First Desktop App With HTML, JS and Electron',
+                        active:true,
+                    },
+                ]
+            },
+            computed:{
+                filteredArticles:function(){
+                    var articles_array = this.articles,
+                        searchString = this.value
+                    if(!searchString){
+                        return articles_array
+                    }
+                    searchString = searchString.trim().toLowerCase();
+
+                    articles_array = articles_array.filter(function(item){
+                        if(item.name.toLowerCase().indexOf(searchString)!==-1){
+                            return item
+                        }
+                    })
+                    return articles_array
+                }
+            }
+
+        })
+
+
+    </script>
+</body>
+</html>
