@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p style="font-size:25px">当前计数：{{ counter }}</p>
+        <button style="font-size: 25px" @click="counter++">Click me！</button>
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                counter:0,
+            }
+        })
+
+        vm.$watch('counter',function(nval, oval){
+            if(nval===18){
+                alert('幸运数字！！'+nval)
+            }
+        })
+
+        setTimeout(
+            function(){
+                vm.counter += 20;
+            },10000
+        );
+       
+    </script>
+</body>
+</html>

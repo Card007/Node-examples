@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Hello,World!</h1>
+        <p>
+            <router-link to="/foo">Go to Foo</router-link>
+            <br>
+            <router-link to="/bar">Go to Bar</router-link>
+
+        </p>
+        <router-view></router-view>
+    </div>
+    
+    <script>
+        const Foo = { template:"<div>foo</div>" }
+        const Bar = { template:"<div>bar</div>"}
+
+        const routes=[
+            { path:'/foo',component: Foo },
+            { path:'/bar',component: Bar}
+        ]
+
+        const router = new VueRouter({
+            routes
+        })
+
+        const app = new Vue({
+            router
+        }).$mount('#app')
+       
+    </script>
+</body>
+</html>
