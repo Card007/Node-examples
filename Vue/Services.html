@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+      display: none;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            font:15px/1.3 'Open Sans', sans-serif;
+            color: #5e5b64;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        form{
+            margin:80px auto;
+            background-color:#61a1bc;
+            width: 600px;
+            height: auto;
+            color: white;
+            border-radius: 3px;
+            padding:50px 0;
+        }
+
+        form ul, .total{
+            margin:auto;
+            padding:0 10px;
+            width: 500px;
+            text-align: left;
+        }
+
+        form ul li{
+            list-style:none;
+            padding:10px 20px;
+            cursor:pointer;
+            background-color:#e35885;
+            margin-bottom: 10px;
+        }
+
+        form ul li span{
+            float: right;
+        }
+
+        form ul li.active{
+            background-color:#8ec16d;
+        }
+
+        .total p{
+            padding:10px 20px;
+            margin-bottom: 10px;
+        }
+
+        .total span{
+            float:right;
+        }
+
+
+    </style>
+</head>
+<body>
+    <form id="main" v-cloak>
+        <h1>Services</h1>
+        <ul>
+            <li v-for="service in services" v-on:click="toggleActive(service)" v-bind:class="{active:service.active}">
+                {{ service.name }}<span>{{ service.price | currency }}</span>
+            </li>
+        </ul>
+
+        <div class="total">
+            <p>Total:<span>{{ total() | currency }}</span></p>
+        </div>
+    </form>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+    <script>
+        Vue.filter('currency',function(value){
+            return '$' + value.toFixed(2)
+        });
+
+        var demo = new Vue({
+            el:"#main",
+            data:{
+                services:[
+                    {
+                        name:'Web Development',
+                        price:300,
+                        active:false,
+                    },{
+                        name:'Design',
+                        price:400,
+                        active:false,
+                    },{
+                        name:'Integration',
+                        price:250,
+                        active:false,
+                    },{
+                        name:'Training',
+                        price:220,
+                        active:false,
+                    },
+                ]
+            },
+            methods:{
+                toggleActive:function(s){
+                    s.active=!s.active;
+                },
+                total:function(){
+                    var total = 0;
+                    this.services.forEach(function(s){
+                        if(s.active){
+                            total += s.price
+                        }
+                    })
+                    return total
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
