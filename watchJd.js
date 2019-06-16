@@ -26,7 +26,7 @@ const requestUrl = async function(bool){
         try {
             for (let i = 0; i < el.length; i++) {
                 let n = el[i].querySelector('div.p-name').textContent
-                if(n.includes('音箱')){
+                if(n.includes('妙控板')){
                     return true
                 } else {
                     return false
