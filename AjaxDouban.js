@@ -39,13 +39,15 @@ var ajax = function(method, path, responseCallback){
 }
 
 var takeId = function(r){
+    log('start')
     var movie = JSON.parse(r.response)
-    var movieList = movie.subjects
-    var l = []
-    for (let i = 0; i < movieList.length; i++) {
-        l.push(movieList[i].id)
-    }
-    return l
+    log(movie)
+    // var movieList = movie.subjects
+    // var l = []
+    // for (let i = 0; i < movieList.length; i++) {
+    //     l.push(movieList[i].id)
+    // }
+    // return l
 }
 
 var top250Url = 'https://api.douban.com/v2/movie/top250'
@@ -53,7 +55,6 @@ var movieUrl = 'https://api.douban.com/v2/movie/'
 
 //所有id
 var movieId = ["1292052", "1291546", "1295644", "1292720", "1292063", "1292722", "1291561", "1295124", "3541415", "3011091", "2131459", "3793023", "1292001", "1291549", "1292064", "1292213", "1889243", "1291560", "1291841", "5912992"]
-var movieList = []
 
 
 for (let i = 0; i < movieId.length; i++){
@@ -63,12 +64,13 @@ for (let i = 0; i < movieId.length; i++){
 var addImag = function(){
     if (index < 21){
         var imgDvi = e('#movie-img')
-        var imgUrl = ajax('GET', (movieList[index]), function(r){
+        var imgUrl = ajax('GET', top250Url, function(r){
             var movie = JSON.parse(r.response)
-            addHtml(imgDvi, `
-                <img id="img-${index}"src=${movie.image}>
-                `)
-            index += 1
+            // addHtml(imgDvi, `
+            //     <img id="img-${index}"src=${movie.image}>
+            //     `)
+            // index += 1
+            log(movie)
         })
         imgUrl
     } else {
